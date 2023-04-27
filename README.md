@@ -4,7 +4,8 @@ This are the configuration needed for the setup I'm actually using in NeoVim
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+NeoVim config inspired from https://github.com/ThePrimeagen/init.lua,
+Built with Lua
 
 ## Getting Started
 
