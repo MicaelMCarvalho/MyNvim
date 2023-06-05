@@ -52,4 +52,7 @@ return require('packer').startup(function(use)
   use('m4xshen/autoclose.nvim')
   --use('github/copilot.vim')
 
+  use ('airblade/vim-gitgutter')
+  use ('Yggdroot/indentLine')
+  use ('numToStr/Comment.nvim')
 end)

@@ -1,4 +1,19 @@
--- vim.opt.guicursor = ""
+--local function set_tab_size()
+--    local bufname = vim.fn.expand('%:p:h')
+--    if string.find(bufname, 'MyISA') then 
+--        vim.opt.tabstop = 2
+--        vim.opt.softtabstop = 2
+--        vim.opt.shiftwidth = 2
+--    else
+--        vim.opt.tabstop = 4
+--        vim.opt.softtabstop = 4
+--        vim.opt.shiftwidth = 4
+--    end
+--end
+
+--vim.cmd('autocmd BufEnter * lua set_tab_size()')
+--vim.cmd('autocmd BufRead * lua set_tab_size()')
+
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -32,3 +47,16 @@ vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
 
+vim.o.title = true
+vim.o.titlestring = "%f"
+--local parent_dir = vim.fn.fnamemodify(vim.fn.expand('%'), ':h')
+--vim.o.titlestring = parent_dir
+
+vim.opt.conceallevel=0
+
+vim.api.nvim_exec([[
+  augroup FileSettings
+    autocmd!
+    autocmd FileType vue,js setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  augroup END
+]], false)
