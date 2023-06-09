@@ -55,4 +55,9 @@ return require('packer').startup(function(use)
   use ('airblade/vim-gitgutter')
   use ('Yggdroot/indentLine')
   use ('numToStr/Comment.nvim')
+
+  use {
+	  'j-morano/buffer_manager.nvim',
+	  requires = { {'nvim-lua/plenary.nvim'} }
+  }
 end)
