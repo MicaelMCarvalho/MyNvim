@@ -11,3 +11,4 @@ vim.keymap.set('i', '<C-w>', send_selected_to_qflist_and_open, {})
 vim.keymap.set('n', '<leader>ps', function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
+vim.api.nvim_set_keymap('n', '<leader>tr', '<cmd>Telescope resume<CR>', { noremap = true, silent = true })
