@@ -1,11 +1,11 @@
 # MyNvim
 
-This are the configuration needed for the setup I'm actually using in NeoVim
+I've started to use NVim to replace my previous IDE, I felt in love with the endless configurations, plugins and so on. In this repository, you can find my configuration done in lua for Nvim. 
 
 ## Description
 
 NeoVim config inspired from https://github.com/ThePrimeagen/init.lua,
-Built with Lua
+Built with Lua.
 
 ## Getting Started
 
@@ -19,7 +19,6 @@ Built with Lua
 
 * Copy file init.nvim to ~/.config/nvim/.
 * Copy file .vimrc to ~/.
-* ;
 
 ### Executing program
 
