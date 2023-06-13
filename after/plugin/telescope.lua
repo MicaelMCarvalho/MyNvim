@@ -12,3 +12,4 @@ vim.keymap.set('n', '<leader>ps', function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
 vim.api.nvim_set_keymap('n', '<leader>tr', '<cmd>Telescope resume<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>pr', builtin.resume, {})
