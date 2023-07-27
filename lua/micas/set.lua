@@ -52,11 +52,12 @@ vim.o.titlestring = "%f"
 --local parent_dir = vim.fn.fnamemodify(vim.fn.expand('%'), ':h')
 --vim.o.titlestring = parent_dir
 
-vim.opt.conceallevel=0
-
 vim.api.nvim_exec([[
   augroup FileSettings
     autocmd!
     autocmd FileType vue,js setlocal tabstop=2 softtabstop=2 shiftwidth=2
   augroup END
 ]], false)
+
+vim.g.markdown_syntax_conceal = 0
+vim.g.vim_json_conceal = 0
