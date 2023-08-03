@@ -58,16 +58,18 @@ return require('packer').startup(function(use)
 
   use ('vimwiki/vimwiki')
 
-  use ('mfussenegger/nvim-dap')
-  use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
-  use 'Pocco81/DAPInstall.nvim'
-  use 'leoluz/nvim-dap-go'
+  -- use ('mfussenegger/nvim-dap')
+  -- use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
+  -- use 'Pocco81/DAPInstall.nvim'
+  -- use 'leoluz/nvim-dap-go'
+  -- use ('puremourning/vimspector')
 
   use {
 	  'j-morano/buffer_manager.nvim',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  use ('rmagatti/auto-session')
   -- use 'andweeb/presence.nvim'
 
 end)

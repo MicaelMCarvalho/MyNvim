@@ -59,4 +59,15 @@ vim.keymap.set("n", "<leader>d", '""d')
 vim.keymap.set("n", "<leader>x", '""x')
 vim.keymap.set("n", "<leader>D", '""D')
 
+
+vim.keymap.set("v", "d", '"_d')
+vim.keymap.set("v", "x", '"_x')
+vim.keymap.set("v", "D", '"_D')
+
+vim.keymap.set("v", "<leader>d", '""d')
+vim.keymap.set("v", "<leader>x", '""x')
+vim.keymap.set("v", "<leader>D", '""D')
+
 vim.keymap.set("v", "<leader>n", ":norm")
+
+

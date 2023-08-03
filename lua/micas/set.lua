@@ -66,5 +66,6 @@ vim.api.nvim_exec([[
 vim.g.markdown_syntax_conceal = 0
 vim.g.vim_json_conceal = 0
 
+-- vim.g.vimspector_enable_mappings = 'HUMAN'
 
 vim.g.python3_host_prog = '/usr/bin/python3'
