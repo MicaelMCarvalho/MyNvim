@@ -49,6 +49,10 @@ vim.g.mapleader = " "
 
 vim.o.title = true
 vim.o.titlestring = "%f"
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 --local parent_dir = vim.fn.fnamemodify(vim.fn.expand('%'), ':h')
 --vim.o.titlestring = parent_dir
 
@@ -61,3 +65,6 @@ vim.api.nvim_exec([[
 
 vim.g.markdown_syntax_conceal = 0
 vim.g.vim_json_conceal = 0
+
+
+vim.g.python3_host_prog = '/usr/bin/python3'

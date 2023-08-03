@@ -23,6 +23,9 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
 
+-- cmp.config.window.completion = cmp.config.window.bordered()
+-- cmp.config.window.documentation = cmp.config.window.bordered()
+
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings
 })
@@ -50,6 +53,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+  vim.keymap.set("n", "<leader>l", function() vim.diagnostic.open_float(0, {scope="line"}) end, opts)
 end)
 
 lsp.setup()
@@ -71,18 +75,27 @@ require'lspconfig'.volar.setup{
 
 require'lspconfig'.vuels.setup{}
 
-require'lspconfig'.csharp_ls.setup{}
-
-require'lspconfig'.omnisharp.setup {
-    cmd = { "dotnet", "/path/to/omnisharp/OmniSharp.dll" },
-    enable_editorconfig_support = true,
-    enable_ms_build_load_projects_on_demand = false,
-    enable_roslyn_analyzers = false,
-    organize_imports_on_format = false,
-    enable_import_completion = false,
-    sdk_include_prereleases = true,
-    analyze_open_documents_only = false,
+require'lspconfig'.csharp_ls.setup{
+    root_dir = function()
+        return lsp.dir.find_first({'.gitignore'})
+    end,
+    AutomaticWorkspaceInit = true,
 }
 
+require'lspconfig'.fsautocomplete.setup{
+    AutomaticWorkspaceInit = true,
+}
 
+-- require'lspconfig'.omnisharp.setup {
+--     cmd = { "dotnet", "/path/to/omnisharp/OmniSharp.dll" },
+--     enable_editorconfig_support = true,
+--     enable_ms_build_load_projects_on_demand = false,
+--     enable_roslyn_analyzers = false,
+--     organize_imports_on_format = false,
+--     enable_import_completion = false,
+--     sdk_include_prereleases = true,
+--     analyze_open_documents_only = false,
+-- }
+--
+--
 require('lspconfig').gopls.setup{}

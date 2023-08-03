@@ -6,6 +6,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use 'jay-babu/mason-nvim-dap.nvim'
 
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
@@ -13,9 +14,8 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use({ 
-	  'rose-pine/neovim', 
-	  as = 'rose-pine',
+  use({
+	  'rose-pine/neovim',
 	  as = 'rose-pine',
 	  config = function()
 		  vim.cmd('colorscheme rose-pine')
@@ -52,12 +52,22 @@ return require('packer').startup(function(use)
   use('m4xshen/autoclose.nvim')
   --use('github/copilot.vim')
 
-  use ('airblade/vim-gitgutter')
+  --use ('airblade/vim-gitgutter')
   use ('Yggdroot/indentLine')
   use ('numToStr/Comment.nvim')
+
+  use ('vimwiki/vimwiki')
+
+  use ('mfussenegger/nvim-dap')
+  use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
+  use 'Pocco81/DAPInstall.nvim'
+  use 'leoluz/nvim-dap-go'
 
   use {
 	  'j-morano/buffer_manager.nvim',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
+
+  -- use 'andweeb/presence.nvim'
+
 end)
