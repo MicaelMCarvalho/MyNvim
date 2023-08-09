@@ -72,4 +72,17 @@ return require('packer').startup(function(use)
   use ('rmagatti/auto-session')
   -- use 'andweeb/presence.nvim'
 
+  use 'jupyter-vim/jupyter-vim'
+
+  use({
+      "epwalsh/obsidian.nvim",
+      requires = {
+          -- Required.
+          "nvim-lua/plenary.nvim",
+
+          -- see below for full list of optional dependencies 👇
+      },
+  })
+
+  
 end)
