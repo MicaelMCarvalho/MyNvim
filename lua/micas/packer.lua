@@ -15,9 +15,9 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use {
-      'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua'
-  }
+  -- use {
+  --     'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua'
+  -- }
 
   use({
 	  'rose-pine/neovim',
@@ -104,4 +104,12 @@ return require('packer').startup(function(use)
   })
   use { "catppuccin/nvim", as = "catppuccin" }
 
+  use({
+    "aaronhallaert/advanced-git-search.nvim",
+    requires = {
+      "nvim-telescope/telescope.nvim",
+      "tpope/vim-fugitive",
+      "tpope/vim-rhubarb",
+    },
+  })
 end)
