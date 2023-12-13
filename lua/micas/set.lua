@@ -48,7 +48,8 @@ vim.opt.colorcolumn = "80"
 vim.g.mapleader = " "
 
 vim.o.title = true
-vim.o.titlestring = "%f"
+-- vim.o.titlestring = "%f"
+vim.o.titlestring = "%{expand(\"%:p:h\")}"
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -69,3 +70,4 @@ vim.g.vim_json_conceal = 0
 -- vim.g.vimspector_enable_mappings = 'HUMAN'
 
 vim.g.python3_host_prog = '/usr/bin/python3'
+

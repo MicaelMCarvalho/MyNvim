@@ -9,9 +9,14 @@ return require('packer').startup(function(use)
   use 'jay-babu/mason-nvim-dap.nvim'
 
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
+	  -- 'nvim-telescope/telescope.nvim', tag = '0.1.1',
+	  'nvim-telescope/telescope.nvim',
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
+  use {
+      'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua'
   }
 
   use({
@@ -24,8 +29,12 @@ return require('packer').startup(function(use)
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
-  use('ThePrimeagen/harpoon')
   use('mbbill/undotree')
+  use{
+      'ThePrimeagen/harpoon',
+      branch = 'harpoon2',
+      requires = {{'nvim-lua/plenary.nvim'}}
+  }
   use('tpope/vim-fugitive')
 
   use {
@@ -52,17 +61,28 @@ return require('packer').startup(function(use)
   use('m4xshen/autoclose.nvim')
   --use('github/copilot.vim')
 
-  --use ('airblade/vim-gitgutter')
+  -- use ('airblade/vim-gitgutter')
+  use ('lewis6991/gitsigns.nvim')
+  use ('tjdevries/colorbuddy.nvim')
   use ('Yggdroot/indentLine')
   use ('numToStr/Comment.nvim')
 
   use ('vimwiki/vimwiki')
 
-  -- use ('mfussenegger/nvim-dap')
-  -- use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
-  -- use 'Pocco81/DAPInstall.nvim'
-  -- use 'leoluz/nvim-dap-go'
-  -- use ('puremourning/vimspector')
+
+  -- DAP
+  use {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+      "nvim-telescope/telescope-dap.nvim",
+
+      --  Adaparter configuration for specific languages
+      { "leoluz/nvim-dap-go" },
+      { "mfussenegger/nvim-dap-python" },
+      "jbyuki/one-small-step-for-vimkind",
+
+  }
 
   use {
 	  'j-morano/buffer_manager.nvim',
@@ -79,10 +99,9 @@ return require('packer').startup(function(use)
       requires = {
           -- Required.
           "nvim-lua/plenary.nvim",
-
           -- see below for full list of optional dependencies 👇
       },
   })
+  use { "catppuccin/nvim", as = "catppuccin" }
 
-  
 end)

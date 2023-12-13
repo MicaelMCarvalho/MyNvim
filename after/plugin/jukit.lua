@@ -1,0 +1,14 @@
+-- Check if the current buffer's file type is "ipynb"
+-- local function is_ipynb()
+--     return vim.fn.expand("%:e") == "ipynb"
+-- end
+--
+-- -- Configurations for vim-jupyter plugin
+-- if is_ipynb() then
+--     -- Add the configuration for vim-jupyter here
+--     -- For example:
+--     vim.cmd("let g:jupyter_enable_mappings = 1")
+--     vim.cmd("let g:jupyter_start_on_init = 0")
+--     -- Add other configurations as needed
+-- end
+--
