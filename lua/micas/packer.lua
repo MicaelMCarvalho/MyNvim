@@ -112,4 +112,11 @@ return require('packer').startup(function(use)
       "tpope/vim-rhubarb",
     },
   })
+
+  use {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end
+  }
 end)

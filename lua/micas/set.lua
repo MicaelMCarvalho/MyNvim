@@ -71,3 +71,15 @@ vim.g.vim_json_conceal = 0
 
 vim.g.python3_host_prog = '/usr/bin/python3'
 
+vim.api.nvim_set_keymap('n', '<leader>s2', [[:set softtabstop=2 shiftwidth=2 tabstop=2<CR>]], {noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>s4', [[:set softtabstop=4 shiftwidth=4 tabstop=4<CR>]], {noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sc', [[:set conceallevel=0<CR>]], {noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sw', [[:set wrap linebreak<CR>]], {noremap = true, silent = true })
+
+
+vim.api.nvim_set_keymap('n', '<leader>js', [[:%!python -m json.tool<CR>]], {noremap = true, silent = true })
+
+
+vim.api.nvim_set_keymap('n', '<leader>tw', [[:set list!<CR>]], { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<leader>rs', [[:%s/\s\+$//e<CR>]], { noremap = true, silent = true })
