@@ -1,25 +1,24 @@
 local config = {
-   keys = {
-      ["("] = { escape = false, close = true, pair = "()"},
-      ["["] = { escape = false, close = true, pair = "[]"},
-      ["{"] = { escape = false, close = true, pair = "{}"},
+  keys = {
+    ["("] = { escape = false, close = true, pair = "()"},
+    ["["] = { escape = false, close = true, pair = "[]"},
+    ["{"] = { escape = false, close = true, pair = "{}"},
 
-      [">"] = { escape = true, close = false, pair = "<>"},
-      [")"] = { escape = true, close = false, pair = "()"},
-      ["]"] = { escape = true, close = false, pair = "[]"},
-      ["}"] = { escape = true, close = false, pair = "{}"},
+    [">"] = { escape = true, close = false, pair = "<>"},
+    [")"] = { escape = true, close = false, pair = "()"},
+    ["]"] = { escape = true, close = false, pair = "[]"},
+    ["}"] = { escape = true, close = false, pair = "{}"},
 
-      ['"'] = { escape = true, close = true, pair = '""'},
-      ["'"] = { escape = true, close = true, pair = "''"},
-      ["`"] = { escape = true, close = true, pair = "``"},
-   },
-   options = {
-      disabled_filetypes = { "text" },
-      disable_when_touch = false,
-   },
+    ['"'] = { escape = true, close = true, pair = '""'},
+    ["'"] = { escape = true, close = true, pair = "''"},
+    ["`"] = { escape = true, close = true, pair = "``"},
+  },
+  options = {
+    disabled_filetypes = { "text" },
+    disable_when_touch = false,
+  },
 }
 
 require("autoclose").setup({
-    options = config
-    }
-    )
+  options = config
+})

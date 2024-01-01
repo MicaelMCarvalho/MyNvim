@@ -1,7 +1,5 @@
 local lsp = require("lsp-zero")
-
 lsp.preset("recommended")
-
 lsp.ensure_installed({
   'tsserver',
   'rust_analyzer',
@@ -9,7 +7,6 @@ lsp.ensure_installed({
 
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
-
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -42,7 +39,6 @@ lsp.set_preferences({
 
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
-
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
@@ -55,14 +51,13 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
   vim.keymap.set("n", "<leader>l", function() vim.diagnostic.open_float(0, {scope="line"}) end, opts)
 end)
-
 lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true
 })
 
-require'lspconfig'.volar.setup{
+require('lspconfig').volar.setup{
     filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
     init_options = {
         typescript = {
@@ -72,32 +67,31 @@ require'lspconfig'.volar.setup{
         }
     }
 }
+require('lspconfig').vuels.setup{}
+require('lspconfig').tsserver.setup{}
 
-require'lspconfig'.vuels.setup{}
 
-require'lspconfig'.csharp_ls.setup{
+require('lspconfig').csharp_ls.setup{
     root_dir = function()
         return lsp.dir.find_first({'.gitignore'})
     end,
     AutomaticWorkspaceInit = true,
 }
 
-require'lspconfig'.fsautocomplete.setup{
+require('lspconfig').fsautocomplete.setup{
     AutomaticWorkspaceInit = true,
 }
 
--- require'lspconfig'.omnisharp.setup {
---     cmd = { "dotnet", "/path/to/omnisharp/OmniSharp.dll" },
---     enable_editorconfig_support = true,
---     enable_ms_build_load_projects_on_demand = false,
---     enable_roslyn_analyzers = false,
---     organize_imports_on_format = false,
---     enable_import_completion = false,
---     sdk_include_prereleases = true,
---     analyze_open_documents_only = false,
--- }
---
---
 require('lspconfig').gopls.setup{}
 
-require('lspconfig').tsserver.setup{}
+
+-- require'lspconfig'.omnisharp.setup {
+  --     cmd = { "dotnet", "/path/to/omnisharp/OmniSharp.dll" },
+  --     enable_editorconfig_support = true,
+  --     enable_ms_build_load_projects_on_demand = false,
+  --     enable_roslyn_analyzers = false,
+  --     organize_imports_on_format = false,
+  --     enable_import_completion = false,
+  --     sdk_include_prereleases = true,
+  --     analyze_open_documents_only = false,
+  -- }
