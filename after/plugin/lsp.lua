@@ -30,12 +30,13 @@ lsp.setup_nvim_cmp({
 lsp.set_preferences({
     suggest_lsp_servers = false,
     sign_icons = {
-        error = 'E',
-        warn = 'W',
-        hint = 'H',
-        info = 'I'
+        error = 'e',
+        warn = 'w',
+        hint = 'h',
+        info = 'i'
     }
 })
+
 
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
@@ -52,6 +53,32 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>l", function() vim.diagnostic.open_float(0, {scope="line"}) end, opts)
 end)
 lsp.setup()
+
+
+
+_G.lsp_warnings_hidden = false
+
+-- Function to toggle the visibility of LSP warnings
+function Toggle_lsp_warnings()
+    if _G.lsp_warnings_hidden then
+        vim.diagnostic.config({
+            virtual_text = false,
+            virtual_lines = false,
+        })
+    else
+        vim.diagnostic.config({
+            virtual_text = true,
+            virtual_lines = true,
+        })
+    end
+end
+
+-- Map a key to toggle the visibility of LSP warnings
+vim.api.nvim_set_keymap('n', '<leader>lw', '<cmd>lua Toggle_lsp_warnings()<CR>', { noremap = true, silent = true })
+
+
+
+
 
 vim.diagnostic.config({
     virtual_text = true
@@ -82,8 +109,12 @@ require('lspconfig').fsautocomplete.setup{
     AutomaticWorkspaceInit = true,
 }
 
-require('lspconfig').gopls.setup{}
-
+require('lspconfig').gopls.setup{
+    cmd = {"gopls", "serve"},
+    on_attach = function(client)
+        print('Language server attached!')
+    end,
+} --go install golang.org/x/tools/gopls@latest
 
 -- require'lspconfig'.omnisharp.setup {
   --     cmd = { "dotnet", "/path/to/omnisharp/OmniSharp.dll" },
@@ -95,3 +126,6 @@ require('lspconfig').gopls.setup{}
   --     sdk_include_prereleases = true,
   --     analyze_open_documents_only = false,
   -- }
+  --
+
+-- require'lspconfig'.dartls.setup{}

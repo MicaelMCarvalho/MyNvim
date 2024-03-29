@@ -7,7 +7,12 @@ local function send_selected_to_qflist_and_open(prompt_bufnr)
 end
 
 vim.keymap.set('n', '<leader>pr', builtin.resume, {})
-vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
+-- vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
+vim.keymap.set('n', '<leader>pf', function()
+  require('telescope.builtin').find_files({
+    file_ignore_patterns = { "venv/" },
+  })
+end, {})
 vim.keymap.set('n', '<leader>bf', builtin.buffers, {})
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('i', '<C-w>', send_selected_to_qflist_and_open, {})

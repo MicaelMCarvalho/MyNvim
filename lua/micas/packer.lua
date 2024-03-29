@@ -78,6 +78,23 @@ return require('packer').startup(function(use)
     "jbyuki/one-small-step-for-vimkind",
   }
 
+  use {
+    'akinsho/flutter-tools.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim', -- optional for vim.ui.select
+    },
+  }
+
+  -- use {
+  --   "microsoft/vscode-js-debug",
+  --   opt = true,
+  --   run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
+  -- }
+
+  -- DAP END
+
+
   -- git related 
   use ('lewis6991/gitsigns.nvim')
   -- use ('airblade/vim-gitgutter')
@@ -100,17 +117,23 @@ return require('packer').startup(function(use)
 
   -- Notes
   use ('vimwiki/vimwiki')
-  use ({
-    "epwalsh/obsidian.nvim",
-    requires = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-      -- see below for full list of optional dependencies 👇
-    },
-  })
+  -- use ({
+  --   "epwalsh/obsidian.nvim",
+  --   requires = {
+  --     -- Required.
+  --     "nvim-lua/plenary.nvim",
+  --     -- see below for full list of optional dependencies 👇
+  --   },
+  -- })
+
 
   use ('jupyter-vim/jupyter-vim')
 
   -- Maybe will use in the future
-  --use ('github/copilot.vim')
+  use ('github/copilot.vim')
+  -- use ('zbirenbaum/copilot.lua')
+
+  -- Obsidian
+  --
+
 end)

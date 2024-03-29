@@ -24,6 +24,7 @@ Before installing and using this Neovim configuration, ensure you have the follo
     - JavaScript/TypeScript: `npm install -g typescript typescript-language-server`
     - Python: `pip install python-language-server`
     - Go: `go get golang.org/x/tools/gopls`
+    - cssharp: dotnet tool install --global csharp-ls then export PATH="$PATH:/Users/micael/.dotnet/tools"
     - etc.
 * **Additional tools for specific plugins**:
     - **Fugitive (Git)**: Git needs to be installed.

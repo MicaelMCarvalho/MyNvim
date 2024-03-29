@@ -14,8 +14,9 @@ local config = {
     ["`"] = { escape = true, close = true, pair = "``"},
   },
   options = {
-    disabled_filetypes = { "text" },
+    disabled_filetypes = { "text", "command" },
     disable_when_touch = false,
+    disable_command_mode = true,
   },
 }
 

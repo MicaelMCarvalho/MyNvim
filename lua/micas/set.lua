@@ -26,7 +26,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
--- vim.opt.colorcolumn = "80" --vertical 
+-- vim.opt.colorcolumn = "80" --vertical
 
 vim.g.mapleader = " "
 
@@ -59,15 +59,44 @@ vim.api.nvim_set_keymap('n', '<leader>sw', [[:set wrap linebreak<CR>]], {noremap
 
 vim.api.nvim_set_keymap('n', '<leader>js', [[:%!python -m json.tool<CR>]], {noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '<leader>tw', [[:set list!<CR>]], { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '<leader>rs', [[:%s/\s\+$//e<CR>]], { noremap = true, silent = true })
+vim.api.nvim_create_user_command(
+  'ToggleWhitespace',
+  'set list!',
+  {desc = 'Toggle display of whitespace characters'}
+)
+
+-- Remove trailing whitespace
+vim.api.nvim_create_user_command(
+  'RemoveTrailingSpaces',
+  '%s/\\s\\+$//e',
+  {desc = 'Remove trailing whitespace from the document'}
+)
+
+-- Set specific list characters
+vim.api.nvim_create_user_command(
+  'SetListChars',
+  'set list listchars=tab:>-,trail:·,eol:↲',
+  {desc = 'Set specific characters for tabs, trailing spaces, and EOL'}
+)
+
+-- Reset list characters
+vim.api.nvim_create_user_command(
+  'ResetListChars',
+  'set list listchars=',
+  {desc = 'Reset list characters to default'}
+)
+
+vim.api.nvim_set_keymap('n', '<leader>tw', ':ToggleWhitespace<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>rs', ':RemoveTrailingSpaces<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sel', ':SetListChars<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>snel', ':ResetListChars<CR>', { noremap = true, silent = true })
 
 
 -- TRYING TO SET different tab steps depending on the path -- NOT WORKING
 --local function set_tab_size()
 --    local bufname = vim.fn.expand('%:p:h')
---    if string.find(bufname, 'MyISA') then 
+--    if string.find(bufname, 'MyISA') then
 --        vim.opt.tabstop = 2
 --        vim.opt.softtabstop = 2
 --        vim.opt.shiftwidth = 2
