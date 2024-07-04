@@ -37,11 +37,11 @@ signs.setup {
   -- },
 
   signcolumn = true,  -- enable sign column for vertical alignment
-  signs = {
-    GitSignsAdd = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr" },
-    GitSignsChange = { hl = "GitSignsChange", text = "│", numhl = "GitSignsChangeNr" },
-    GitSignsDelete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr" },
-  },
+  -- signs = {
+  --   GitSignsAdd = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr" },
+  --   GitSignsChange = { hl = "GitSignsChange", text = "│", numhl = "GitSignsChangeNr" },
+  --   GitSignsDelete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr" },
+  -- },
   sign_priority = 6,
 
   current_line_blame_opts = {

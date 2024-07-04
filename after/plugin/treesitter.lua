@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "javascript", "python", "c", "lua", "vim", "vimdoc", "query", "rust", "dockerfile", "c_sharp", "vue", "markdown", "yaml", "go"  },
+  ensure_installed = { "javascript", "python", "c", "lua", "vim", "vimdoc", "query", "rust", "dockerfile", "c_sharp", "vue", "markdown", "yaml", "go", "dart" },
 
   sync_install = false,
 
@@ -16,5 +16,11 @@ require'nvim-treesitter.configs'.setup {
   },
   autotag = {
       enable = true,
-  }
+  },
+  smartindent = {
+      enable = false,
+  },
+  indent = {
+      enable = false,
+  },
 }

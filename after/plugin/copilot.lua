@@ -1,43 +1,22 @@
-vim.api.nvim_set_keymap('i', '<Tab>', 'copilot#Accept("<CR>")', {silent = true, expr = true})
--- vim.api.nvim_set_keymap('i', '<leader>cn', 'copilot#NextSuggestion()', {silent = true})
--- vim.api.nvim_set_keymap('i', '<leader>cp', 'copilot#PreviousSuggestion()', {silent = true})
--- vim.api.nvim_set_keymap('i', '<leader>ce', 'copil#Enable()', {silent = true})
+vim.g.copilot_no_tab_map = true
 
+vim.api.nvim_set_keymap('i', '<C-i>', 'copilot#Accept("<CR>")', {silent = true, expr = true, desc = 'copilot: Accept the current suggestion'})
 
--- local buf = vim.api.nvim_get_current_buf()
--- viim.api.nvim_buf_set_var(buf, "workspace_folder", "~/Projects/myproject")
-
---
--- require'copilot'.setup{
---     on_done = function()
---         vim.g.copilot_workspace_folders = { vim.fn.getcwd() }
---     end,
---     keymap = {
---         insert_mode = {
---             ["<C-L>"] = "<Plug>(copilot-accept-word)"
---         }
---     },
---     filetypes = {
---         markdown = true
---     },
---     cmd = "Copilot",
--- }
---
 ---- Dismiss the current suggestion
-vim.api.nvim_set_keymap('i', '<C-,>', '<Plug>(copilot-dismiss)', {silent = true})
+vim.api.nvim_set_keymap('i', '<C-,>', '<Plug>(copilot-dismiss)', {silent = true, desc = 'copilot: Dismiss the current suggestion'})
 
 -- Cycle to the next suggestion
-vim.api.nvim_set_keymap('i', '<C-m>', '<Plug>(copilot-next)', {silent = true})
+vim.api.nvim_set_keymap('i', '<C-m>', '<Plug>(copilot-next)', {silent = true, desc = 'copilot: Cycle to the next suggestion'})
 
 -- Cycle to the previous suggestion
-vim.api.nvim_set_keymap('i', '<C-l>', '<Plug>(copilot-previous)', {silent = true})
+vim.api.nvim_set_keymap('i', '<C-l>', '<Plug>(copilot-previous)', {silent = true, desc = 'copilot: Cycle to the previous suggestion'})
 
 -- Explicitly request a suggestion
 -- vim.api.nvim_set_keymap('i', '<M-\\>', '<Plug>(copilot-suggest)', {silent = true})
 
 -- Accept the next word of the current suggestion
-vim.api.nvim_set_keymap('i', '<C-j>', '<Plug>(copilot-accept-word)', {silent = true})
+vim.api.nvim_set_keymap('i', '<C-j>', '<Plug>(copilot-accept-word)', {silent = true, desc = 'copilot: Accept the next word of the current suggestion'})
 -- Accept the next line of the current suggestion
-vim.api.nvim_set_keymap('i', '<C-k>', '<Plug>(copilot-accept-line)', {silent = true})
+vim.api.nvim_set_keymap('i', '<C-k>', '<Plug>(copilot-accept-line)', {silent = true, desc = 'copilot: Accept the next line of the current suggestion'})
 
 

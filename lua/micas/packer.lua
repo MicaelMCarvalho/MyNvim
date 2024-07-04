@@ -1,11 +1,34 @@
-vim.cmd [[packadd packer.nvim]]
-
 return require('packer').startup(function(use)
   use ('wbthomason/packer.nvim')
 
   -- Theme and colors
   use { "catppuccin/nvim", as = "catppuccin" }
   use ('tjdevries/colorbuddy.nvim')
+  -- Shwo colors rgb
+  use ('norcalli/nvim-colorizer.lua')
+
+
+  -- Lines customizer
+  use {
+      'nvim-lualine/lualine.nvim',
+      requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
+
+  use({
+      "xiyaowong/nvim-transparent",
+      config = function()
+          require("transparent").setup {
+              enable = true,
+          }
+      end
+  })
+
+
+  -- use { 
+  --     'tjdevries/express_line.nvim',
+  --     requires = {'nvim-lua/plenary.nvim'} 
+  -- }
+
   -- use ({
   --   'rose-pine/neovim',
   --   as = 'rose-pine',
@@ -29,8 +52,9 @@ return require('packer').startup(function(use)
   -- helpers
   use ('m4xshen/autoclose.nvim') -- autoclose ( { [
   use ('numToStr/Comment.nvim') -- comment line hotkeys
-  use ('Yggdroot/indentLine')
+  -- use ('Yggdroot/indentLine')
   use ('mbbill/undotree')
+  use('lukas-reineke/indent-blankline.nvim')
 
   -- TELESCOPE
   use {
@@ -41,7 +65,7 @@ return require('packer').startup(function(use)
 
   -- Syntax Highlight
   use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-  use ('nvim-treesitter/playground')
+  -- use ('nvim-treesitter/playground')
   use ('tpope/vim-fugitive')
 
   -- LSP
@@ -70,6 +94,7 @@ return require('packer').startup(function(use)
     "jay-babu/mason-nvim-dap.nvim",
     "mfussenegger/nvim-dap",
     "rcarriga/nvim-dap-ui",
+    "nvim-neotest/nvim-nio",
     "theHamsta/nvim-dap-virtual-text",
     "nvim-telescope/telescope-dap.nvim",
     --  Adaparter configuration for specific languages
@@ -82,8 +107,12 @@ return require('packer').startup(function(use)
     'akinsho/flutter-tools.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim', -- optional for vim.ui.select
+      -- 'stevearc/dressing.nvim', -- optional for vim.ui.select
     },
+  }
+
+  use {
+      'dart-lang/dart-vim-plugin',
   }
 
   -- use {
@@ -117,14 +146,14 @@ return require('packer').startup(function(use)
 
   -- Notes
   use ('vimwiki/vimwiki')
-  -- use ({
-  --   "epwalsh/obsidian.nvim",
-  --   requires = {
-  --     -- Required.
-  --     "nvim-lua/plenary.nvim",
-  --     -- see below for full list of optional dependencies 👇
-  --   },
-  -- })
+  use ({
+    "epwalsh/obsidian.nvim",
+    requires = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+      -- see below for full list of optional dependencies 👇
+    },
+  })
 
 
   use ('jupyter-vim/jupyter-vim')
@@ -136,4 +165,10 @@ return require('packer').startup(function(use)
   -- Obsidian
   --
 
+
+  -- headlines for Markdown
+  use ('lukas-reineke/headlines.nvim')
+
+  -- view images
+  use {'edluffy/hologram.nvim'}
 end)

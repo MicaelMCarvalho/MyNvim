@@ -1,15 +1,15 @@
 local dap, dapui = require('dap'), require('dapui')
 
 
-vim.keymap.set('n', '<F5>', '<Cmd>lua require"dap".continue()<CR>', { silent = true })
-vim.keymap.set('n', '<F10>', '<Cmd>lua require"dap".step_over()<CR>', { silent = true })
-vim.keymap.set('n', '<F11>', '<Cmd>lua require"dap".step_into()<CR>', { silent = true })
-vim.keymap.set('n', '<F12>', '<Cmd>lua require"dap".step_out()<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>b', '<Cmd>lua require"dap".toggle_breakpoint()<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>B', '<Cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>lp', '<Cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>dr', '<Cmd>lua require"dap".repl.open()<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>dl', '<Cmd>lua require"dap".run_last()<CR>', { silent = true })
+vim.keymap.set('n', '<F5>', '<Cmd>lua require"dap".continue()<CR>', { silent = true, desc = "DAP: Continue" })
+vim.keymap.set('n', '<F10>', '<Cmd>lua require"dap".step_over()<CR>', { silent = true, desc = "DAP: Step over" })
+vim.keymap.set('n', '<F11>', '<Cmd>lua require"dap".step_into()<CR>', { silent = true, desc = "DAP: Step into" })
+vim.keymap.set('n', '<F12>', '<Cmd>lua require"dap".step_out()<CR>', { silent = true, desc = "DAP: Step out" })
+vim.keymap.set('n', '<Leader>b', '<Cmd>lua require"dap".toggle_breakpoint()<CR>', { silent = true, desc = "DAP: Toggle breakpoint" })
+vim.keymap.set('n', '<Leader>B', '<Cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', { silent = true, desc = "DAP: Set breakpoint" })
+vim.keymap.set('n', '<Leader>lp', '<Cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', { silent = true, desc = "DAP: Log point" })
+vim.keymap.set('n', '<Leader>dr', '<Cmd>lua require"dap".repl.open()<CR>', { silent = true, desc = "DAP: Open REPL" })
+vim.keymap.set('n', '<Leader>dl', '<Cmd>lua require"dap".run_last()<CR>', { silent = true, desc = "DAP: Run last" })
 
 
 dapui.setup({
