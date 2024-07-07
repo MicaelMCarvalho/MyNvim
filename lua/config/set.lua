@@ -1,61 +1,100 @@
+vim.cmd.colorscheme "catppuccin"
+
+-- Set line numbers
 vim.opt.nu = true
+
+-- Set relative line numbers
 vim.opt.relativenumber = true
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+-- Set tab width to 4 spaces
+vim.opt.tabstop = 2
+
+-- Set soft tab width to 4 spaces
+vim.opt.softtabstop = 2
+
+-- Set shift width (used for auto-indent) to 4 spaces
+vim.opt.shiftwidth = 2
+
+-- Convert tabs to spaces
 vim.opt.expandtab = true
 
+-- Enable smart indentation
 vim.opt.smartindent = true
 
+-- Disable line wrapping
 vim.opt.wrap = false
 
+-- Disable swap file creation
 vim.opt.swapfile = false
+
+-- Disable backup file creation
 vim.opt.backup = false
+
+-- Set the directory for undo files
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+
+-- Enable persistent undo
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+-- Disable search highlight
+vim.opt.hlsearch = true
+
+-- Enable incremental search
 vim.opt.incsearch = true
 
+-- Enable true color support
 vim.opt.termguicolors = true
 
+-- Set scroll offset
 vim.opt.scrolloff = 8
+
+-- Always show the sign column
 vim.opt.signcolumn = "yes"
+
+-- Append '@-@' to the 'isfname' option (file name characters)
 vim.opt.isfname:append("@-@")
 
+-- Set the update time (in milliseconds)
 vim.opt.updatetime = 50
 
--- vim.opt.colorcolumn = "80" --vertical
+-- vim.opt.colorcolumn = "80" -- Set a vertical color column at 80 characters (commented out)
 
-vim.g.mapleader = " "
 
+-- Enable the window title
 vim.o.title = true
--- vim.o.titlestring = "%f"
+
+-- Set the window title to the full path of the current file's directory
 vim.o.titlestring = "%{expand(\"%:p:h\")}"
 
+-- Ignore case in search patterns
 vim.opt.ignorecase = true
+
+-- Override 'ignorecase' if search pattern contains uppercase letters
 vim.opt.smartcase = true
 
---local parent_dir = vim.fn.fnamemodify(vim.fn.expand('%'), ':h')
---vim.o.titlestring = parent_dir
+-- -- Create an autocommand group for file type settings
+-- vim.api.nvim_exec([[
+--   augroup FileSettings
+--     autocmd!
+--     autocmd FileType vue,js setlocal tabstop=2 softtabstop=2 shiftwidth=2
+--   augroup END
+-- ]], false)
 
-vim.api.nvim_exec([[
-  augroup FileSettings
-    autocmd!
-    autocmd FileType vue,js setlocal tabstop=2 softtabstop=2 shiftwidth=2
-  augroup END
-]], false)
-
+-- Disable syntax concealment in Markdown files
 vim.g.markdown_syntax_conceal = 0
+
+-- Disable syntax concealment in JSON files
 vim.g.vim_json_conceal = 0
 
+-- Set the Python 3 interpreter path
 vim.g.python3_host_prog = '/usr/bin/python3'
 
--- Set softtabstop, shiftwidth, and tabstop to 2
+-- Key mappings
+
+-- Set softtabstop, shiftwidth, and tabstop to 2 spaces
 vim.api.nvim_set_keymap('n', '<leader>s2', [[:set softtabstop=2 shiftwidth=2 tabstop=2<CR>]], {noremap = true, silent = true, desc = 'Set softtabstop, shiftwidth, and tabstop to 2' })
 
--- Set softtabstop, shiftwidth, and tabstop to 4
+-- Set softtabstop, shiftwidth, and tabstop to 4 spaces
 vim.api.nvim_set_keymap('n', '<leader>s4', [[:set softtabstop=4 shiftwidth=4 tabstop=4<CR>]], {noremap = true, silent = true, desc = 'Set softtabstop, shiftwidth, and tabstop to 4' })
 
 -- Set conceallevel to 0
@@ -67,43 +106,48 @@ vim.api.nvim_set_keymap('n', '<leader>sw', [[:set wrap linebreak<CR>]], {noremap
 -- Format the entire buffer as JSON
 vim.api.nvim_set_keymap('n', '<leader>js', [[:%!python -m json.tool<CR>]], {noremap = true, silent = true, desc = 'Format the entire buffer as JSON' })
 
+-- User commands
+
+-- Toggle display of whitespace characters
 vim.api.nvim_create_user_command(
   'ToggleWhitespace',
   'set list!',
   {desc = 'Toggle display of whitespace characters'}
 )
 
--- Remove trailing whitespace
+-- Remove trailing whitespace from the document
 vim.api.nvim_create_user_command(
   'RemoveTrailingSpaces',
   '%s/\\s\\+$//e',
   {desc = 'Remove trailing whitespace from the document'}
 )
 
--- Set specific list characters
+-- Set specific characters for tabs, trailing spaces, and end of line
 vim.api.nvim_create_user_command(
   'SetListChars',
   'set list listchars=tab:>-,trail:·,eol:↲',
   {desc = 'Set specific characters for tabs, trailing spaces, and EOL'}
 )
 
--- Reset list characters
+-- Reset list characters to default
 vim.api.nvim_create_user_command(
   'ResetListChars',
   'set list listchars=',
   {desc = 'Reset list characters to default'}
 )
 
--- Toggle whitespace characters
+-- Key mappings for user commands
+
+-- Toggle display of whitespace characters
 vim.api.nvim_set_keymap('n', '<leader>tw', ':ToggleWhitespace<CR>', { noremap = true, silent = true, desc = 'Toggle display of whitespace characters' })
 
--- Remove trailing spaces
-vim.api.nvim_set_keymap('n', '<leader>rs', ':RemoveTrailingSpaces<CR>', { noremap = true, silent = true, desc = 'Remove trailing whitespace from the document' }) 
+-- Remove trailing whitespace
+vim.api.nvim_set_keymap('n', '<leader>rs', ':RemoveTrailingSpaces<CR>', { noremap = true, silent = true, desc = 'Remove trailing whitespace from the document' })
 
--- Set list characters
+-- Set specific characters for tabs, trailing spaces, and end of line
 vim.api.nvim_set_keymap('n', '<leader>sel', ':SetListChars<CR>', { noremap = true, silent = true, desc = 'Set specific characters for tabs, trailing spaces, and EOL' })
 
--- Reset list characters
+-- Reset list characters to default
 vim.api.nvim_set_keymap('n', '<leader>snel', ':ResetListChars<CR>', { noremap = true, silent = true, desc = 'Reset list characters to default' })
 
 

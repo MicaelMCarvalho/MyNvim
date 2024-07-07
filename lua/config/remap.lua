@@ -6,9 +6,9 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Execute a Vim command" }
 
 -- In visual mode, move selected lines down with J
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down with J" })
-
 -- In visual mode, move selected lines up with K
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up with K" })
+
 vim.api.nvim_set_keymap('n', '<leader>s2', [[:set softtabstop=2 shiftwidth=2 tabstop=2<CR>]], {noremap = true, silent = true, desc = 'Set softtabstop, shiftwidth, and tabstop to 2' })
 vim.api.nvim_set_keymap('n', '<leader>s4', [[:set softtabstop=4 shiftwidth=4 tabstop=4<CR>]], {noremap = true, silent = true, desc = 'Set softtabstop, shiftwidth, and tabstop to 4' })
 vim.api.nvim_set_keymap('n', '<leader>sc', [[:set conceallevel=0<CR>]], {noremap = true, silent = true, desc = 'Set conceallevel to 0' })

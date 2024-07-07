@@ -1,1 +1,1 @@
-require("micas")
+require("config.lazy")
