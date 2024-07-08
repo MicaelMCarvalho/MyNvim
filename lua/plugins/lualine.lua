@@ -3,22 +3,8 @@ return {
     "nvim-lualine/lualine.nvim",
     lazy = false,
     config = function()
-      -- Set blend for the status line
-      vim.cmd([[
-        highlight StatusLine guibg=#1E1E2E guifg=#ffffff blend=30
-        highlight StatusLineNC guibg=#1E1E2E guifg=#aaaaaa blend=30
-      ]])
 
-      -- Optional: Set blend for lualine sections if needed
-      vim.api.nvim_exec([[
-        augroup LualineBlend
-          autocmd!
-          autocmd ColorScheme * highlight StatusLine guibg=#1E1E2E guifg=#ffffff blend=30
-          autocmd ColorScheme * highlight StatusLineNC guibg=#1E1E2E guifg=#aaaaaa blend=30
-        augroup END
-      ]], false)
-
-      -- Load lualine with the options
+      -- load lualine with the options
       require('lualine').setup({
         options = {
           icons_enabled = true,
@@ -31,7 +17,7 @@ return {
             winbar = {},
           },
           ignore_focus = {
-            'NvimTree',
+            'nvimtree',
             'vista',
             'dbui',
           },
@@ -86,6 +72,23 @@ return {
         winbar = {},
         extensions = {},
       })
+
+      -- set blend for the status line
+      vim.cmd([[
+        highlight statusline guibg=#1e1e2e guifg=#ffffff blend=30
+        highlight statuslinenc guibg=#1e1e2e guifg=#aaaaaa blend=30
+      ]])
+
+      -- optional: set blend for lualine sections if needed
+      vim.api.nvim_exec([[
+        augroup lualineblend
+          autocmd!
+          autocmd colorscheme * highlight statusline guibg=#1e1e2e guifg=#ffffff blend=30
+          autocmd colorscheme * highlight statuslinenc guibg=#1e1e2e guifg=#aaaaaa blend=30
+        augroup end
+      ]], false)
+
     end,
   }
 }
+
