@@ -19,7 +19,7 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 -- Enable smart indentation
-vim.opt.smartindent = true
+vim.opt.smartindent = false
 
 -- Disable line wrapping
 vim.opt.wrap = false

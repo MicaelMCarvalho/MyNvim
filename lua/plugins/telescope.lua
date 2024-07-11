@@ -52,6 +52,7 @@ return {
 
       vim.api.nvim_set_keymap('n', '<leader>tr', '<cmd>Telescope resume<CR>', { noremap = true, silent = true, desc = 'Resume last telescope list' })
       vim.api.nvim_set_keymap('n', '<leader>tk', [[:Telescope keymaps<CR>]], { noremap = true, silent = true, desc = 'Show keymaps' })
+      vim.api.nvim_set_keymap('v', '<leader>tk', [[:Telescope keymaps<CR>]], { noremap = true, silent = true, desc = 'Show keymaps' })
 
       vim.keymap.set('n', '<leader>te', function()
           require('telescope.builtin').diagnostics({

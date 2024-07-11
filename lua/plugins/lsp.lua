@@ -3,23 +3,35 @@ return
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
-    lazy = true,
+    lazy = false,
     config = false,
     init = function()
       -- Disable automatic setup, we are doing it manually
       vim.g.lsp_zero_extend_cmp = 0
       vim.g.lsp_zero_extend_lspconfig = 0
+
+      vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, {buffer = bufnr, remap = true, desc = "LSP: Workspace symbol"})
+      vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, {buffer = bufnr, remap = true, desc = "LSP: Open diagnostic float"})
+      vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, {buffer = bufnr, remap = true, desc = "LSP: Go to next diagnostic"})
+      vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, {buffer = bufnr, remap = true, desc = "LSP: Go to previous diagnostic"})
+      vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, {buffer = bufnr, remap = true, desc = "LSP: Code action"})
+      vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, {buffer = bufnr, remap = true, desc = "LSP: References"})
+      vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, {buffer = bufnr, remap = true, desc = "LSP: Rename"})
+      vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, {buffer = bufnr, remap = true, desc = "LSP: Signature help"})
+      vim.keymap.set("n", "<leader>l", function() vim.diagnostic.open_float(0, {scope="line"}) end, {buffer = bufnr, remap = true, desc = "LSP: Open line diagnostic float"})
+      vim.keymap.set("n", "<leader>vi", "<cmd>lua vim.lsp.buf.formatting()<CR>", {buffer = bufnr, remap = true, desc = "LSP: Format"})
     end,
   },
   {
     'williamboman/mason.nvim',
-    lazy = false,
+    lazy = true,
     config = true,
   },
 
   -- Autocompletion
   {
     'hrsh7th/nvim-cmp',
+    lazy = false,
     event = 'InsertEnter',
     dependencies = {
       {'L3MON4D3/LuaSnip'},
@@ -36,9 +48,10 @@ return
       cmp.setup({
         formatting = lsp_zero.cmp_format({details = true}),
         mapping = cmp.mapping.preset.insert({
+          ['<C-y>'] = cmp.mapping.confirm({ select = true }),
           ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-d>'] = cmp.mapping.scroll_docs(4),
+          ['<leader>su'] = cmp.mapping.scroll_docs(-4),
+          ['<leader>sd'] = cmp.mapping.scroll_docs(4),
           ['<C-f>'] = cmp_action.luasnip_jump_forward(),
           ['<C-b>'] = cmp_action.luasnip_jump_backward(),
         }),

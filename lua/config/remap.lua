@@ -135,3 +135,5 @@ vim.keymap.set("n", "zz", "zz", { noremap= true, silent = true, desc = "Clear se
 
 vim.keymap.set("n", "<leader>yf", ":let @+ = expand('%:p')<CR>", { desc = "Put the full path of the current file in the system clipboard" })
 
+vim.keymap.set("n", "<leader>l", function() vim.diagnostic.open_float(0, {scope="line"}) end, {buffer = bufnr, remap = true, desc = "LSP: Open line diagnostic float"})
+

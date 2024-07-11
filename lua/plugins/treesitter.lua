@@ -2,6 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    lazy = "false",
     opts = {
       ensure_installed = { "javascript", "python", "c", "lua", "vim", "vimdoc", "query", "rust", "dockerfile", "c_sharp", "vue", "markdown", "yaml", "go", "dart" },
       sync_install = false,
@@ -18,10 +19,10 @@ return {
         enable = true,
       },
       smartindent = {
-        enable = false,
+        enable = true,
       },
       indent = {
-        enable = false,
+        enable = true,
       },
     }
   }
