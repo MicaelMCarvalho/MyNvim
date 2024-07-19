@@ -137,3 +137,9 @@ vim.keymap.set("n", "<leader>yf", ":let @+ = expand('%:p')<CR>", { desc = "Put t
 
 vim.keymap.set("n", "<leader>l", function() vim.diagnostic.open_float(0, {scope="line"}) end, {buffer = bufnr, remap = true, desc = "LSP: Open line diagnostic float"})
 
+vim.keymap.set('v', '<leader>2x', ":'<,'>norm 0xx<CR>", { desc = "Execute :'<,'>norm 0xx in visual mode" })
+vim.keymap.set('v', '<leader>4x', ":'<,'>norm 0xxxx<CR>", { desc = "Execute :'<,'>norm 0xxxx in visual mode" })
+
+vim.keymap.set('v', '<leader>2a', ":'<,'>norm 0i  <CR>", { desc = "Execute :'<,'>norm add 2 spaces start in visual mode" })
+vim.keymap.set('v', '<leader>4a', ":'<,'>norm 0i    <CR>", { desc = "Execute :'<,'>norm add 4 spaces start invisual mode" })
+

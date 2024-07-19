@@ -1,10 +1,9 @@
 return {
   {
-    "lukas-reineke/indent-blankline.nvim",
-    lazy = false,
-    config = function()
-      require("ibl").setup()
-    end,
+    -- lua/plugins/something.lua
+    'lukas-reineke/indent-blankline.nvim',
+    main = "ibl",
+    opts = {},
   }
 }
 
