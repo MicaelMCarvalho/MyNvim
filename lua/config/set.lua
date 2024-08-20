@@ -136,6 +136,11 @@ vim.api.nvim_create_user_command(
   {desc = 'Reset list characters to default'}
 )
 
+
+-- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- vim.o.sessionoptions = vim.o.sessionoptions .. ',localoptions'
+--
 -- Key mappings for user commands
 
 -- Toggle display of whitespace characters
@@ -149,6 +154,7 @@ vim.api.nvim_set_keymap('n', '<leader>sel', ':SetListChars<CR>', { noremap = tru
 
 -- Reset list characters to default
 vim.api.nvim_set_keymap('n', '<leader>snel', ':ResetListChars<CR>', { noremap = true, silent = true, desc = 'Reset list characters to default' })
+
 
 
 -- TRYING TO SET different tab steps depending on the path -- NOT WORKING
@@ -181,7 +187,6 @@ vim.api.nvim_set_keymap('n', '<leader>snel', ':ResetListChars<CR>', { noremap = 
 -- ]])
 --
 -- vim.cmd [[
---   highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=#3b4252 guifg=NONE
 -- ]]
 --
 -- vim.cmd [[
