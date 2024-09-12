@@ -155,7 +155,24 @@ vim.api.nvim_set_keymap('n', '<leader>sel', ':SetListChars<CR>', { noremap = tru
 -- Reset list characters to default
 vim.api.nvim_set_keymap('n', '<leader>snel', ':ResetListChars<CR>', { noremap = true, silent = true, desc = 'Reset list characters to default' })
 
+-- DART FLUTTER
+-- Define the dart_format function in the global scope
+function _G.dart_format()
+  -- Get the path of the current buffer
+  local file_path = vim.api.nvim_buf_get_name(0)
+  
+  -- Run 'dart format' on the current file
+  vim.cmd("!dart format " .. file_path)
+  
+  -- Reload the buffer to see the changes
+  vim.cmd("edit!")
+end
 
+-- Set the keymap to trigger the dart_format function
+vim.api.nvim_set_keymap('n', '<leader>df', ':lua dart_format()<CR>', { noremap = true, silent = true })
+
+-- Create a keymap to format the current buffer
+vim.api.nvim_set_keymap('n', '<leader>df', ':lua dart_format()<CR>', { noremap = true, silent = true , desc = 'Format the current buffer using dart format' })
 
 -- TRYING TO SET different tab steps depending on the path -- NOT WORKING
 --local function set_tab_size()
