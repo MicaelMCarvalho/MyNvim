@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 
 -- Map <leader>pv to execute a vim command
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Execute a Vim command" })
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Vim File Explorer" })
 
 -- In visual mode, move selected lines down with J
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down with J" })

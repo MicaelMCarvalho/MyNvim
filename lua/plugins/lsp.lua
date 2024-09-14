@@ -99,6 +99,30 @@ return
       require("lspconfig").dartls.setup({
         cmd = { "dart", "language-server", "--protocol=lsp" },
       })
+      require('lspconfig').lua_ls.setup {
+      settings = {
+        Lua = {
+          runtime = {
+            -- Use LuaJIT for Neovim
+            version = 'LuaJIT',
+          },
+          diagnostics = {
+            -- Recognize the `vim` global to avoid the undefined global warning
+            globals = { 'vim' },
+          },
+          workspace = {
+            -- Make the language server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true),
+            checkThirdParty = false,  -- Disable third-party library checks
+          },
+          telemetry = {
+            -- Disable telemetry for privacy
+            enable = false,
+          },
+        },
+      },
+    }
+
     end
   }
 }

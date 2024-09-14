@@ -174,6 +174,7 @@ vim.api.nvim_set_keymap('n', '<leader>df', ':lua dart_format()<CR>', { noremap =
 -- Create a keymap to format the current buffer
 vim.api.nvim_set_keymap('n', '<leader>df', ':lua dart_format()<CR>', { noremap = true, silent = true , desc = 'Format the current buffer using dart format' })
 
+vim.g.netrw_list_hide = '^\\./\\S\\+,\\~$,\\.DS_Store$,\\.git$'
 -- TRYING TO SET different tab steps depending on the path -- NOT WORKING
 --local function set_tab_size()
 --    local bufname = vim.fn.expand('%:p:h')
