@@ -22,7 +22,6 @@ return {
         require('telescope.builtin').find_files({
           file_ignore_patterns = { "venv/" },
         })
-
       end, {desc = 'Telecope: Find files'})
       vim.keymap.set('n', '<leader>bf', builtin.buffers, { desc = 'Telescope: Buffers' })
       vim.keymap.set('n', '<leader>tt', '<cmd>Telescope<CR>',  { desc = 'telescope: Menu' })
@@ -31,6 +30,12 @@ return {
       vim.keymap.set('n', '<leader>ps', function()
         builtin.grep_string({ search = vim.fn.input("Grep > ") });
       end, { desc = 'Telescope: Grep string' })
+      vim.keymap.set('n', '<leader>lg', function()
+        require('telescope.builtin').live_grep({
+          file_ignore_patterns = { "venv/" },
+        })
+      end, {desc = 'Telecope: Live grep'})
+      vim.keymap.set('n', '<leader>bf', builtin.buffers, { desc = 'Telescope: Buffers' })
       vim.keymap.set('n', '<leader>pu', function()
         local current_word = vim.fn.expand("<cword>")
         require('telescope.builtin').grep_string({
