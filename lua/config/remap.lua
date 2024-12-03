@@ -1,6 +1,10 @@
 -- Set the leader key to space
 vim.g.mapleader = " "
 
+-- Set macro key to \
+vim.keymap.set('n', '\\', '@', { noremap = true, desc = "Macro key" })
+vim.keymap.set('n', ',', '@@', { noremap = true, desc = "Repeat last macro" })
+
 -- Map <leader>pv to execute a vim command
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Vim File Explorer" })
 
