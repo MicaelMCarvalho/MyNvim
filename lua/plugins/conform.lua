@@ -8,7 +8,7 @@ return {
       function()
         require("conform").format({ async = true, lsp_fallback = true })
       end,
-      mode = { "n", "v" }, 
+      mode = { "n", "v" },
       desc = "Format buffer",
     },
   },
@@ -16,22 +16,38 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       python = { "isort", "black" },
-      javascript = { "prettierd", "prettier", stop_after_first = true },
+      javascript = { "prettierd", "prettier" },
       typescript = { "prettierd", "prettier" },
-      bash = { "shfmt", "shellcheck" },
+      dockerfile = { "beautysh" },
+      ["docker-compose"] = { "yamlfix" },
+      ["docker-compose.yaml"] = { "yamlfix" },
+      yaml = { "yamlfix" },
       sh = { "shfmt", "shellcheck" },
-      dockerfile = { "dockerfilelint" },
-      ["docker-compose"] = { "docker-compose-format" },
-      ["docker-compose.yaml"] = { "docker-compose-format" },
-      yaml = { "prettier", "yamlfix" }
+      bash = { "shfmt", "shellcheck" },
     },
     formatters = {
+      black = {
+        command = os.getenv("HOME") .. "/.venv/nvim-format/bin/black",
+      },
+      isort = {
+        command = os.getenv("HOME") .. "/.venv/nvim-format/bin/isort",
+      },
+      yamlfix = {
+        command = os.getenv("HOME") .. "/.venv/nvim-format/bin/yamlfix",
+      },
+      beautysh = {
+        command = os.getenv("HOME") .. "/.venv/nvim-format/bin/beautysh",
+      },
       shfmt = {
         prepend_args = { "-i", "2" },
       },
       shellcheck = {
         args = { "--severity", "warning" },
       },
+    },
+    format_on_save = { timeout_ms = 500 },
+    default_format_opts = {
+      lsp_format = "fallback",
     },
   },
   init = function()
