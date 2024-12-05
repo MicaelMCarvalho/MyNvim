@@ -69,13 +69,13 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { de
 -- Format buffer
 
 
-vim.keymap.set("n", "<leader>f", function()
-  if vim.lsp.buf.server_capabilities.documentFormattingProvider then
-    vim.lsp.buf.format()
-  else
-    print("LSP does not support formatting for this file.")
-  end
-end, { desc = "Format buffer" })
+-- vim.keymap.set("n", "<leader>f", function()
+--   if vim.lsp.buf.server_capabilities.documentFormattingProvider then
+--     vim.lsp.buf.format()
+--   else
+--     print("LSP does not support formatting for this file.")
+--   end
+-- end, { desc = "Format buffer" })
 
 
 -- Go to next error and center cursor line
