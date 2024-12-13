@@ -35,6 +35,9 @@ vim.keymap.set("n", "n", "nzzzv", { desc = "Find next match and center cursor li
 -- In normal mode, find previous match and center cursor line
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Find previous match and center cursor line" })
 
+-- In normal mode, center the cursor line
+vim.keymap.set("n", "zz", "zz", { desc = "Center the cursor line" })
+
 -- Start VimWithMe session
 vim.keymap.set("n", "<leader>vwm", function()
     require("vim-with-me").StartVimWithMe()
@@ -134,8 +137,6 @@ vim.keymap.set("v", "<leader>D", '""D')
 vim.keymap.set("v", "<leader>n", ":norm", { desc = "Run normal mode command on selection" })
 
 vim.keymap.set("n", "<leader>z", ":noh<CR>", { desc = "Clear search highlights" })
-
-vim.keymap.set("n", "zz", "zz", { noremap= true, silent = true, desc = "Clear search highlights" })
 
 vim.keymap.set("n", "<leader>yf", ":let @+ = expand('%:p')<CR>", { desc = "Put the full path of the current file in the system clipboard" })
 
