@@ -69,6 +69,14 @@ return {
           })
       end, {desc = "Search for diagnostics in the current buffers"})
 
+      vim.keymap.set('n', '<leader>pe', function()
+        require('telescope.builtin').diagnostics({
+          severity = vim.diagnostic.severity.ERROR,
+          root_dir = vim.loop.cwd()  -- Search in the entire project directory
+        })
+      end, {desc = "Search for errors in the entire project"})
+
+
       -- defaults = {
         --   mappings = {
           --     i = {
