@@ -147,4 +147,10 @@ vim.keymap.set('v', '<leader>4x', ":'<,'>norm 0xxxx<CR>", { desc = "Execute :'<,
 
 vim.keymap.set('v', '<leader>2a', ":'<,'>norm 0i  <CR>", { desc = "Execute :'<,'>norm add 2 spaces start in visual mode" })
 vim.keymap.set('v', '<leader>4a', ":'<,'>norm 0i    <CR>", { desc = "Execute :'<,'>norm add 4 spaces start invisual mode" })
+--
+-- Insert opening JSX comment in normal mode
+vim.keymap.set('n', '<leader>{', 'i{/* <Esc>', { desc = "Insert JSX comment opening" })
+
+-- Insert closing JSX comment in normal mode
+vim.keymap.set('n', '<leader>}', 'a */}<Esc>', { desc = "Insert JSX comment closing" })
 

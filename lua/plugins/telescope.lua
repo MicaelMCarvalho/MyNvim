@@ -8,9 +8,21 @@ return {
       -- Default mappings
       require('telescope').setup({
         defaults = {
-          path_display = { "truncate" }
+          path_display = { "smart_truncate" },
+          layout_strategy = 'horizontal', -- or 'vertical'
+          layout_config = {
+            horizontal = {
+              width = 0.8,   -- 80% of screen width
+              height = 0.8,  -- 80% of screen height
+              preview_width = 0.4, -- 60% of width for preview panel
+            },
+            vertical = {
+              width = 0.8,
+              height = 0.8,
+              preview_height = 0.5, -- 50% of height for preview panel
+            },
+          },
         }
-
       })
 
       local builtin = require('telescope.builtin')

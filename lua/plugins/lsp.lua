@@ -12,13 +12,13 @@ return
 
       vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, {buffer = bufnr, remap = true, desc = "LSP: Workspace symbol"})
       vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, {buffer = bufnr, remap = true, desc = "LSP: Open diagnostic float"})
-      vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, {buffer = bufnr, remap = true, desc = "LSP: Go to next diagnostic"})
-      vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, {buffer = bufnr, remap = true, desc = "LSP: Go to previous diagnostic"})
+      vim.keymap.set("n", "<leader>ln", function() vim.diagnostic.goto_next() end, {buffer = bufnr, remap = true, desc = "LSP: Go to next diagnostic"})
+      vim.keymap.set("n", "<leader>lp", function() vim.diagnostic.goto_prev() end, {buffer = bufnr, remap = true, desc = "LSP: Go to previous diagnostic"})
       vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, {buffer = bufnr, remap = true, desc = "LSP: Code action"})
       vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, {buffer = bufnr, remap = true, desc = "LSP: References"})
       vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, {buffer = bufnr, remap = true, desc = "LSP: Rename"})
       vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, {buffer = bufnr, remap = true, desc = "LSP: Signature help"})
-      vim.keymap.set("n", "<leader>l", function() vim.diagnostic.open_float(0, {scope="line"}) end, {buffer = bufnr, remap = true, desc = "LSP: Open line diagnostic float"})
+      vim.keymap.set("n", "<leader>ll", function() vim.diagnostic.open_float(0, {scope="line"}) end, {buffer = bufnr, remap = true, desc = "LSP: Open line diagnostic float"})
       vim.keymap.set("n", "<leader>vi", "<cmd>lua vim.lsp.buf.formatting()<CR>", {buffer = bufnr, remap = true, desc = "LSP: Format"})
     end,
   },
