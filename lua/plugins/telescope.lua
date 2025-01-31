@@ -96,6 +96,12 @@ return {
           root_dir = vim.loop.cwd()
         })
       end, { desc = "Search for errors in the entire project" })
+      vim.keymap.set('n', '<leader>pE', function()
+        require('telescope.builtin').diagnostics({
+          severity = vim.diagnostic.severity.ERROR
+        })
+      end, { desc = "Search for errors across all workspaces" })
+
       vim.keymap.set('n', '<leader>pw', function()
         require('telescope.builtin').diagnostics({
           severity = vim.diagnostic.severity.WARN,
