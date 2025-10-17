@@ -115,3 +115,6 @@ end, { desc = "[P]Unfold all folds" })
 vim.keymap.set("n", "<leader>mfa", function()
   vim.cmd("normal! zM")
 end, { desc = "[P]Fold all folds" })
+
+vim.opt.foldlevel = 99
+

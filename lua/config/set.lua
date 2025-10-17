@@ -81,7 +81,7 @@ vim.opt.smartcase = true
 -- ]], false)
 
 -- Disable syntax concealment in Markdown files
-vim.g.markdown_syntax_conceal = 0
+vim.g.markdown_syntax_conceal = 1
 
 -- Disable syntax concealment in JSON files
 vim.g.vim_json_conceal = 0
@@ -135,7 +135,6 @@ vim.api.nvim_create_user_command(
   'set list listchars=',
   {desc = 'Reset list characters to default'}
 )
-
 
 -- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 

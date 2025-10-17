@@ -87,11 +87,11 @@ vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Go to next error and 
 -- Go to previous error and center cursor line
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Go to previous error and center cursor line" })
 
--- Go to next location and center cursor line
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Go to next location and center cursor line" })
-
--- Go to previous location and center cursor line
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Go to previous location and center cursor line" })
+-- -- Go to next location and center cursor line
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Go to next location and center cursor line" })
+--
+-- -- Go to previous location and center cursor line
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Go to previous location and center cursor line" })
 
 -- Search and replace current word under cursor
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace current word under cursor" })
@@ -101,9 +101,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true }, { de
 
 -- Open packer.lua configuration file
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>", { desc = "Open packer.lua configuration file" })
-
--- Run CellularAutomaton make_it_rain command
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", { desc = "Run CellularAutomaton make_it_rain command" })
 
 -- Source current file
 vim.keymap.set("n", "<leader><leader>", function()
@@ -154,3 +151,66 @@ vim.keymap.set('n', '<leader>{', 'i{/* <Esc>', { desc = "Insert JSX comment open
 -- Insert closing JSX comment in normal mode
 vim.keymap.set('n', '<leader>}', 'a */}<Esc>', { desc = "Insert JSX comment closing" })
 
+vim.keymap.set('n', '<leader>ra', ':registers 0123456789abcdefghijklmnopqrstuvwxyz<CR>', { desc = "Show all numbered and letter registers macros" })
+
+vim.keymap.set('n', '<leader>dr', function()
+    for i = string.byte('a'), string.byte('z') do
+        vim.fn.setreg(string.char(i), '')
+    end
+    for i = 0, 9 do
+        vim.fn.setreg(tostring(i), '')
+    end
+    print("All registers cleared")
+end, { desc = "Delete all registers" })
+
+vim.keymap.set('n', '<leader>dc', function()
+    vim.ui.input({
+        prompt = "Enter register to clear (0-9 or a-z): ",
+    }, function(input)
+        if input then
+            -- Check if input is valid
+            if string.match(input, "^[0-9a-z]$") then
+                vim.fn.setreg(input, '')
+                print("Register '" .. input .. "' cleared")
+            else
+                print("Invalid register. Use 0-9 or a-z")
+            end
+        end
+    end)
+end, { desc = "Delete specific register" })
+
+
+local map = function(lhs, rhs, desc)
+  vim.keymap.set('n', lhs, rhs, { noremap = true, silent = true, desc = desc })
+end
+
+map('za', '<Cmd>normal! za<CR>', 'Toggle fold under cursor')
+map('zc', '<Cmd>normal! zc<CR>', 'Close fold under cursor')
+map('zo', '<Cmd>normal! zo<CR>', 'Open fold under cursor')
+map('zC', '<Cmd>normal! zC<CR>', 'Close all folds recursively under cursor')
+map('zO', '<Cmd>normal! zO<CR>', 'Open all folds recursively under cursor')
+map('zR', '<Cmd>normal! zR<CR>', 'Open all folds in buffer')
+map('zM', '<Cmd>normal! zM<CR>', 'Close all folds in buffer')
+map('zm', '<Cmd>normal! zm<CR>', 'Reduce foldlevel by 1 (more folds closed)')
+map('zr', '<Cmd>normal! zr<CR>', 'Increase foldlevel by 1 (more folds open)')
+map('zv', '<Cmd>normal! zv<CR>', 'Open folds just enough to show the cursor line')
+map('zx', '<Cmd>normal! zx<CR>', 'Update folds & view according to settings')
+map('zd', '<Cmd>normal! zd<CR>', 'Delete fold at cursor')
+map('zE', '<Cmd>normal! zE<CR>', 'Delete all folds in buffer')
+
+-- zf{motion} alternative, so it shows in Telescope
+vim.keymap.set('n', '<leader>zf', function()
+  vim.api.nvim_feedkeys('zf', 'n', false)
+end, { desc = 'Create a manual fold (then give a motion)' })
+
+
+
+-- Save registers/macros/etc. to ShaDa
+vim.keymap.set("n", "<leader>ms", "<Cmd>wshada<CR>", {
+  desc = "Save ShaDa (persist registers/macros)"
+})
+
+-- Reload registers/macros/etc. from ShaDa
+vim.keymap.set("n", "<leader>mr", "<Cmd>rshada<CR>", {
+  desc = "Reload ShaDa (restore registers/macros)"
+})
