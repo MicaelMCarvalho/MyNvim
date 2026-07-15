@@ -6,15 +6,29 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
+  init = function()
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "markdown",
+      callback = function()
+        vim.opt_local.conceallevel = 1
+      end,
+    })
+  end,
+
   keys = {
-    { "gf", function() return require("obsidian").follow_link() end, mode = "n", desc = "Obsidian: Follow link under cursor" },
-    { "<leader>0n", function() return require("obsidian").new_note() end, mode = "n", desc = "Obsidian: Create new note" },
-    { "<leader>0f", "<cmd>ObsidianSearch<cr>", mode = "n", desc = "Obsidian: Search in notes" },
-    { "<leader>0q", "<cmd>ObsidianQuickSwitch<cr>", mode = "n", desc = "Obsidian: Quick Switch" },
-    { "<leader>0g", function() return require("obsidian").open_graph() end, mode = "n", desc = "Obsidian: Open graph view" },
-    { "<leader>0w", function() return require("obsidian").workspace.list() end, mode = "n", desc = "Obsidian: List and switch workspaces" },
-    { "<leader>0p", function() return require("obsidian").workspace.switch("personal") end, mode = "n", desc = "Obsidian: Switch to personal workspace" },
-    { "<leader>0k", function() return require("obsidian").workspace.switch("work") end, mode = "n", desc = "Obsidian: Switch to work workspace" },
+    -- { "gf", function() return require("obsidian").follow_link() end, mode = "n", desc = "Obsidian: Follow link under cursor" },
+    { "gf",         "<cmd>ObsidianFollowLink<cmd>",        mode = "n", desc = "Obsidian: Follow link under cursor" },
+    { "<leader>0n", "<cmd>obsidiannew<cmd>",               mode = "n", desc = "obsidian: create new note" },
+    -- { "<leader>0n", function() return require("obsidian").new_note() end, mode = "n", desc = "obsidian: create new note" },
+    { "<leader>0l", "<cmd>ObsidianLink<cmd>",              mode = "n", desc = "obsidian: create new link" },
+    { "<leader>0k", "<cmd>Obsidianworkspace work<cr>",     mode = "n", desc = "obsidian: switch to work workspace" },
+    { "<leader>0f", "<cmd>ObsidianSearch<cr>",             mode = "n", desc = "Obsidian: Search in notes" },
+    { "<leader>0q", "<cmd>ObsidianQuickSwitch<cr>",        mode = "n", desc = "Obsidian: Quick Switch" },
+    -- { "<leader>0g", function() return require("obsidian").open_graph() end, mode = "n", desc = "Obsidian: Open graph view" },
+    { "<leader>0w", "<cmd>ObsidianWorkspace<cr>",          mode = "n", desc = "Obsidian: List and switch workspaces" },
+    { "<leader>0p", "<cmd>ObsidianWorkspace personal<cr>", mode = "n", desc = "Obsidian: Switch to personal workspace" },
+    { "<leader>0k", "<cmd>obsidianworkspace work<cr>",     mode = "n", desc = "obsidian: switch to work workspace" },
+
   },
   opts = {
     workspaces = {
@@ -25,15 +39,14 @@ return {
       {
         name = "work",
         path = "/Users/micael/Library/CloudStorage/GoogleDrive-micael.l.m.c@gmail.com/My Drive/Obsidian/MintT",
-        overrides = {
-          completion = {
-            nvim_cmp = true,
-            min_chars = 3,
-          },
-        },
+        -- overrides = {
+        --   completion = {
+        --     nvim_cmp = true,
+        --     min_chars = 3,
+        --   },
+        -- },
       },
     },
-
     completion = {
       nvim_cmp = true,
       min_chars = 2,
@@ -53,5 +66,6 @@ return {
 
     open_notes_in_current_window = false,
     prefer_link_text_as_title = true,
+
   },
 }

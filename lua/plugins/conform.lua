@@ -22,9 +22,17 @@ return {
       ["docker-compose"] = { "yamlfix" },
       ["docker-compose.yaml"] = { "yamlfix" },
       yaml = { "yamlfix" },
+      ["Jenkinsfile"] = { "yamlfix" },
+      ["jenkins"] = { "yamlfix" },
       sh = { "shfmt", "shellcheck" },
       bash = { "shfmt", "shellcheck" },
     },
+    formatters_by_pattern = {
+      ["Jenkinsfile%.yaml"] = { "yamlfix" },
+      ["Jenkinsfile%.yml"] = { "yamlfix" },
+      ["jenkins%-.*%.ya?ml"] = { "yamlfix" },
+    },
+
     formatters = {
       black = {
         command = os.getenv("HOME") .. "/.venv/nvim-format/bin/black",

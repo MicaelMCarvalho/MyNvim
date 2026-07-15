@@ -12,8 +12,8 @@ return {
           layout_strategy = 'horizontal', -- or 'vertical'
           layout_config = {
             horizontal = {
-              width = 0.8,   -- 80% of screen width
-              height = 0.8,  -- 80% of screen height
+              width = 0.8,         -- 80% of screen width
+              height = 0.8,        -- 80% of screen height
               preview_width = 0.4, -- 60% of width for preview panel
             },
             vertical = {
@@ -108,6 +108,34 @@ return {
           root_dir = vim.loop.cwd()
         })
       end, { desc = "Search for warnings in the entire project" })
+      vim.keymap.set('n', '<leader>pW', function()
+        require('telescope.builtin').diagnostics({
+          root_dir = vim.loop.cwd()
+        })
+      end, { desc = "Search for diagnostics in the entire project" })
+      vim.keymap.set('n', '<leader>ts', builtin.lsp_document_symbols, { desc = 'Telescope: Search lsp document symbols' })
+    end,
+  },
+  {
+    "1riz/telescope-macros.nvim",
+    config = function()
+      require("telescope").load_extension "macros"
+      vim.keymap.set("n", "<space>m<space>", "<cmd>Telescope macros<cr>")
+      require('telescope').setup({
+        extensions = {
+          macros = {
+            prompt_title = "Macros",
+            num_registers = 50,
+            letter_registers = true,
+            theme = "dropdown",
+            layout_strategy = "center",
+            layout_config = {
+              height = 0.20,
+              width = 0.50
+            }
+          }
+        }
+      })
     end,
   }
 }
