@@ -214,3 +214,17 @@ vim.keymap.set("n", "<leader>ms", "<Cmd>wshada<CR>", {
 vim.keymap.set("n", "<leader>mr", "<Cmd>rshada<CR>", {
   desc = "Reload ShaDa (restore registers/macros)"
 })
+
+
+
+vim.keymap.set("n", "<leader>tw", function()
+  require("telescope.builtin").live_grep({
+    search_dirs = { "./node_modules/tailwindcss" },
+  })
+end, { desc = "Search Tailwind docs (live_grep)" })
+
+vim.keymap.set("n", "<leader>tw", function()
+  require("telescope.builtin").live_grep({
+    search_dirs = { "./node_modules/tailwindcss" },
+  })
+end, { desc = "Search Tailwind docs (live_grep)" })

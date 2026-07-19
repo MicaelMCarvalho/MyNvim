@@ -1,64 +1,140 @@
 return {
   "stevearc/conform.nvim",
+
   event = { "BufWritePre" },
   cmd = { "ConformInfo" },
+
   keys = {
     {
       "<leader>f",
       function()
-        require("conform").format({ async = true, lsp_fallback = true })
+        require("conform").format({
+          async = true,
+          lsp_format = "fallback",
+        })
       end,
       mode = { "n", "v" },
-      desc = "Conform Format buffer",
+      desc = "Format buffer",
+    },
+
+    -- Optional: apply all safe Ruff fixes to a Python file.
+    {
+      "<leader>cf",
+      function()
+        if vim.bo.filetype ~= "python" then
+          vim.notify(
+            "Ruff fixes are only available for Python files",
+            vim.log.levels.WARN
+          )
+          return
+        end
+
+        require("conform").format({
+          async = true,
+          formatters = { "ruff_fix", "ruff_format" },
+        })
+      end,
+      mode = "n",
+      desc = "Ruff fix and format",
     },
   },
+
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "isort", "black" },
-      javascript = { "prettierd", "prettier" },
-      typescript = { "prettierd", "prettier" },
+
+      -- Ruff replaces isort + Black.
+      -- 1. Sort and organize imports
+      -- 2. Format the Python source
+      python = {
+        "ruff_organize_imports",
+        "ruff_format",
+      },
+
+      -- Run prettierd when available; otherwise use prettier.
+      javascript = {
+        "prettierd",
+        "prettier",
+        stop_after_first = true,
+      },
+      javascriptreact = {
+        "prettierd",
+        "prettier",
+        stop_after_first = true,
+      },
+      typescript = {
+        "prettierd",
+        "prettier",
+        stop_after_first = true,
+      },
+      typescriptreact = {
+        "prettierd",
+        "prettier",
+        stop_after_first = true,
+      },
+
       dockerfile = { "beautysh" },
+
       ["docker-compose"] = { "yamlfix" },
-      ["docker-compose.yaml"] = { "yamlfix" },
       yaml = { "yamlfix" },
-      ["Jenkinsfile"] = { "yamlfix" },
-      ["jenkins"] = { "yamlfix" },
-      sh = { "shfmt", "shellcheck" },
-      bash = { "shfmt", "shellcheck" },
-    },
-    formatters_by_pattern = {
-      ["Jenkinsfile%.yaml"] = { "yamlfix" },
-      ["Jenkinsfile%.yml"] = { "yamlfix" },
-      ["jenkins%-.*%.ya?ml"] = { "yamlfix" },
+
+      sh = { "shfmt" },
+      bash = { "shfmt" },
+      zsh = { "shfmt" },
     },
 
-    formatters = {
-      black = {
-        command = os.getenv("HOME") .. "/.venv/nvim-format/bin/black",
-      },
-      isort = {
-        command = os.getenv("HOME") .. "/.venv/nvim-format/bin/isort",
-      },
-      yamlfix = {
-        command = os.getenv("HOME") .. "/.venv/nvim-format/bin/yamlfix",
-      },
-      beautysh = {
-        command = os.getenv("HOME") .. "/.venv/nvim-format/bin/beautysh",
-      },
-      shfmt = {
-        prepend_args = { "-i", "2" },
-      },
-      shellcheck = {
-        args = { "--severity", "warning" },
-      },
-    },
+    -- Do not automatically format when saving.
+    -- Change this to the table shown below to enable it.
     format_on_save = false,
+
     default_format_opts = {
       lsp_format = "fallback",
+      timeout_ms = 3000,
+    },
+
+    notify_on_error = true,
+    notify_no_formatters = true,
+
+    formatters = {
+      -- Ruff installed with:
+      --   brew install ruff
+      --
+      -- "ruff" is resolved from PATH, so no hardcoded path is needed.
+      ruff_format = {
+        command = "ruff",
+      },
+      ruff_organize_imports = {
+        command = "ruff",
+      },
+      ruff_fix = {
+        command = "ruff",
+      },
+
+      yamlfix = {
+        command = vim.fn.expand(
+          "~/.venv/nvim-format/bin/yamlfix"
+        ),
+      },
+
+      beautysh = {
+        command = vim.fn.expand(
+          "~/.venv/nvim-format/bin/beautysh"
+        ),
+      },
+
+      shfmt = {
+        prepend_args = {
+          "-i",
+          "2",
+          "-ci",
+          "-sr",
+        },
+      },
     },
   },
+
   init = function()
-    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    vim.o.formatexpr =
+      "v:lua.require'conform'.formatexpr()"
   end,
 }
