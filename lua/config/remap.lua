@@ -1,5 +1,6 @@
 -- Set the leader key to space
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Set macro key to \
 vim.keymap.set('n', '\\', '@', { noremap = true, desc = "Macro key" })
@@ -13,12 +14,17 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down 
 -- In visual mode, move selected lines up with K
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up with K" })
 
-vim.api.nvim_set_keymap('n', '<leader>s2', [[:set softtabstop=2 shiftwidth=2 tabstop=2<CR>]], {noremap = true, silent = true, desc = 'Set softtabstop, shiftwidth, and tabstop to 2' })
-vim.api.nvim_set_keymap('n', '<leader>s4', [[:set softtabstop=4 shiftwidth=4 tabstop=4<CR>]], {noremap = true, silent = true, desc = 'Set softtabstop, shiftwidth, and tabstop to 4' })
-vim.api.nvim_set_keymap('n', '<leader>sc', [[:set conceallevel=0<CR>]], {noremap = true, silent = true, desc = 'Set conceallevel to 0' })
-vim.api.nvim_set_keymap('n', '<leader>sw', [[:set wrap linebreak<CR>]], {noremap = true, silent = true, desc = 'Enable line wrapping and line breaking' })
+vim.api.nvim_set_keymap('n', '<leader>s2', [[:set softtabstop=2 shiftwidth=2 tabstop=2<CR>]],
+  { noremap = true, silent = true, desc = 'Set softtabstop, shiftwidth, and tabstop to 2' })
+vim.api.nvim_set_keymap('n', '<leader>s4', [[:set softtabstop=4 shiftwidth=4 tabstop=4<CR>]],
+  { noremap = true, silent = true, desc = 'Set softtabstop, shiftwidth, and tabstop to 4' })
+vim.api.nvim_set_keymap('n', '<leader>sc', [[:set conceallevel=0<CR>]],
+  { noremap = true, silent = true, desc = 'Set conceallevel to 0' })
+vim.api.nvim_set_keymap('n', '<leader>sw', [[:set wrap linebreak<CR>]],
+  { noremap = true, silent = true, desc = 'Enable line wrapping and line breaking' })
 
-vim.api.nvim_set_keymap('n', '<leader>js', [[:%!python -m json.tool<CR>]], {noremap = true, silent = true, desc = 'Format the entire buffer as JSON' })
+vim.api.nvim_set_keymap('n', '<leader>js', [[:%!python -m json.tool<CR>]],
+  { noremap = true, silent = true, desc = 'Format the entire buffer as JSON' })
 
 -- In normal mode, join lines with J and return to initial position
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines with J and return to initial position" })
@@ -40,34 +46,40 @@ vim.keymap.set("n", "zz", "zz", { desc = "Center the cursor line" })
 
 -- Start VimWithMe session
 vim.keymap.set("n", "<leader>vwm", function()
-    require("vim-with-me").StartVimWithMe()
+  require("vim-with-me").StartVimWithMe()
 end, { desc = "Start VimWithMe session" })
 
 -- Stop VimWithMe session
 vim.keymap.set("n", "<leader>svwm", function()
-    require("vim-with-me").StopVimWithMe()
+  require("vim-with-me").StopVimWithMe()
 end, { desc = "Stop VimWithMe session" })
 
 -- In visual mode, paste before selection and keep selection
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste before selection and keep selection" })
 
 -- Yank to system clipboard
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
 
 -- Yank to end of line to system clipboard
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank to end of line to system clipboard" })
 
 -- Delete without yanking
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]], { desc = "Delete without yanking" })
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
 
 -- In insert mode, map Ctrl-c to Escape
-vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Map Ctrl-c to Escape" })
+vim.keymap.set("i", "<C-c>", "<Esc>", {
+  noremap = true,
+  silent = true,
+  nowait = true,
+  desc = "Map Ctrl-c to Escape",
+})
 
 -- Disable Q command in normal mode
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable Q command in normal mode" })
 
 -- Open a new tmux window with tmux-sessionizer
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Open a new tmux window with tmux-sessionizer" })
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>",
+  { desc = "Open a new tmux window with tmux-sessionizer" })
 --
 -- Format buffer
 
@@ -94,21 +106,24 @@ vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Go to previous error 
 -- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Go to previous location and center cursor line" })
 
 -- Search and replace current word under cursor
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace current word under cursor" })
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Search and replace current word under cursor" })
 
 -- Make current file executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true }, { desc = "Make current file executable" })
 
 -- Open packer.lua configuration file
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>", { desc = "Open packer.lua configuration file" })
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>",
+  { desc = "Open packer.lua configuration file" })
 
 -- Source current file
 vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
+  vim.cmd("so")
 end, { desc = "Source current file" })
 
 -- Format buffer as JSON
-vim.keymap.set("n", "<leader>jt", ":bufdo %!python -m json.tool<CR>", { silent = true }, { desc = "Format buffer as JSON" })
+vim.keymap.set("n", "<leader>jt", ":bufdo %!python -m json.tool<CR>", { silent = true },
+  { desc = "Format buffer as JSON" })
 
 -- Delete without yanking
 vim.keymap.set("n", "d", '"_d')
@@ -135,15 +150,19 @@ vim.keymap.set("v", "<leader>n", ":norm", { desc = "Run normal mode command on s
 
 vim.keymap.set("n", "<leader>z", ":noh<CR>", { desc = "Clear search highlights" })
 
-vim.keymap.set("n", "<leader>yf", ":let @+ = expand('%:p')<CR>", { desc = "Put the full path of the current file in the system clipboard" })
+vim.keymap.set("n", "<leader>yf", ":let @+ = expand('%:p')<CR>",
+  { desc = "Put the full path of the current file in the system clipboard" })
 
-vim.keymap.set("n", "<leader>l", function() vim.diagnostic.open_float(0, {scope="line"}) end, {buffer = bufnr, remap = true, desc = "LSP: Open line diagnostic float"})
+vim.keymap.set("n", "<leader>l", function() vim.diagnostic.open_float(0, { scope = "line" }) end,
+  { buffer = bufnr, remap = true, desc = "LSP: Open line diagnostic float" })
 
 vim.keymap.set('v', '<leader>2x', ":'<,'>norm 0xx<CR>", { desc = "Execute :'<,'>norm 0xx in visual mode" })
 vim.keymap.set('v', '<leader>4x', ":'<,'>norm 0xxxx<CR>", { desc = "Execute :'<,'>norm 0xxxx in visual mode" })
 
-vim.keymap.set('v', '<leader>2a', ":'<,'>norm 0i  <CR>", { desc = "Execute :'<,'>norm add 2 spaces start in visual mode" })
-vim.keymap.set('v', '<leader>4a', ":'<,'>norm 0i    <CR>", { desc = "Execute :'<,'>norm add 4 spaces start invisual mode" })
+vim.keymap.set('v', '<leader>2a', ":'<,'>norm 0i  <CR>",
+  { desc = "Execute :'<,'>norm add 2 spaces start in visual mode" })
+vim.keymap.set('v', '<leader>4a', ":'<,'>norm 0i    <CR>",
+  { desc = "Execute :'<,'>norm add 4 spaces start invisual mode" })
 --
 -- Insert opening JSX comment in normal mode
 vim.keymap.set('n', '<leader>{', 'i{/* <Esc>', { desc = "Insert JSX comment opening" })
@@ -151,32 +170,33 @@ vim.keymap.set('n', '<leader>{', 'i{/* <Esc>', { desc = "Insert JSX comment open
 -- Insert closing JSX comment in normal mode
 vim.keymap.set('n', '<leader>}', 'a */}<Esc>', { desc = "Insert JSX comment closing" })
 
-vim.keymap.set('n', '<leader>ra', ':registers 0123456789abcdefghijklmnopqrstuvwxyz<CR>', { desc = "Show all numbered and letter registers macros" })
+vim.keymap.set('n', '<leader>ra', ':registers 0123456789abcdefghijklmnopqrstuvwxyz<CR>',
+  { desc = "Show all numbered and letter registers macros" })
 
 vim.keymap.set('n', '<leader>dr', function()
-    for i = string.byte('a'), string.byte('z') do
-        vim.fn.setreg(string.char(i), '')
-    end
-    for i = 0, 9 do
-        vim.fn.setreg(tostring(i), '')
-    end
-    print("All registers cleared")
+  for i = string.byte('a'), string.byte('z') do
+    vim.fn.setreg(string.char(i), '')
+  end
+  for i = 0, 9 do
+    vim.fn.setreg(tostring(i), '')
+  end
+  print("All registers cleared")
 end, { desc = "Delete all registers" })
 
 vim.keymap.set('n', '<leader>dc', function()
-    vim.ui.input({
-        prompt = "Enter register to clear (0-9 or a-z): ",
-    }, function(input)
-        if input then
-            -- Check if input is valid
-            if string.match(input, "^[0-9a-z]$") then
-                vim.fn.setreg(input, '')
-                print("Register '" .. input .. "' cleared")
-            else
-                print("Invalid register. Use 0-9 or a-z")
-            end
-        end
-    end)
+  vim.ui.input({
+    prompt = "Enter register to clear (0-9 or a-z): ",
+  }, function(input)
+    if input then
+      -- Check if input is valid
+      if string.match(input, "^[0-9a-z]$") then
+        vim.fn.setreg(input, '')
+        print("Register '" .. input .. "' cleared")
+      else
+        print("Invalid register. Use 0-9 or a-z")
+      end
+    end
+  end)
 end, { desc = "Delete specific register" })
 
 
@@ -228,3 +248,9 @@ vim.keymap.set("n", "<leader>tw", function()
     search_dirs = { "./node_modules/tailwindcss" },
   })
 end, { desc = "Search Tailwind docs (live_grep)" })
+
+
+vim.keymap.set("n", "<leader>mp", function()
+  vim.cmd("write")
+  vim.cmd("silent !go-grip % -b &")
+end, { desc = "Preview Markdown in go-grip" })

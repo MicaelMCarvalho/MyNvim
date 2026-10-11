@@ -43,8 +43,8 @@ return {
       vim.keymap.set('n', '<leader>bf', builtin.buffers, { desc = 'Telescope: Buffers' })
       vim.keymap.set('n', '<leader>tt', '<cmd>Telescope<CR>', { desc = 'telescope: Menu' })
       vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Telescope: Git files' })
-      vim.keymap.set('i', '<C-w>', send_selected_to_qflist_and_open,
-        { desc = 'Telescope: Send selected to qflist and open' })
+      -- vim.keymap.set('i', '<C-w>', send_selected_to_qflist_and_open,
+      --   { desc = 'Telescope: Send selected to qflist and open' })
       vim.keymap.set('n', '<leader>ps', function()
         builtin.grep_string({ search = vim.fn.input("Grep > ") });
       end, { desc = 'Telescope: Grep string' })

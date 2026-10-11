@@ -213,4 +213,7 @@ vim.g.netrw_list_hide = '^\\./\\S\\+,\\~$,\\.DS_Store$,\\.git$'
 --     autocmd WinLeave,BufLeave * setlocal nocursorline
 --   augroup END
 -- ]]
---
+
+
+-- Disable built-in SQL completion keymaps
+vim.g.omni_sql_no_default_maps = 1

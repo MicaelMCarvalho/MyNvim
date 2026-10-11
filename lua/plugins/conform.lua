@@ -96,6 +96,17 @@ return {
     notify_no_formatters = true,
 
     formatters = {
+      prettierd = {
+        prepend_args = {
+          "--single-quote",
+        },
+      },
+
+      prettier = {
+        prepend_args = {
+          "--single-quote",
+        },
+      },
       -- Ruff installed with:
       --   brew install ruff
       --
@@ -135,6 +146,6 @@ return {
 
   init = function()
     vim.o.formatexpr =
-      "v:lua.require'conform'.formatexpr()"
+    "v:lua.require'conform'.formatexpr()"
   end,
 }
