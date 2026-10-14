@@ -5,10 +5,49 @@ return {
     config = function()
       local actions = require('telescope.actions')
 
+      local function middle_truncate_path(opts, path)
+        local status = require('telescope.state').get_status(vim.api.nvim_get_current_buf())
+        local results_win = status and status.results_win
+        local available_width = results_win and vim.api.nvim_win_get_width(results_win) or 80
+
+        if status and status.picker then
+          available_width = available_width - vim.fn.strdisplaywidth(status.picker.selection_caret) - 2
+        end
+        available_width = available_width - (opts.__prefix or 0)
+
+        if vim.fn.strdisplaywidth(path) <= available_width then
+          return path
+        end
+
+        local separator = package.config:sub(1, 1)
+        local absolute = path:sub(1, 1) == separator
+        local parts = vim.split(path, separator, { plain = true, trimempty = true })
+
+        if #parts < 3 then
+          return path
+        end
+
+        local first = (absolute and separator or '') .. parts[1]
+        local prefix = first .. separator .. '…' .. separator
+        local suffix = parts[#parts]
+
+        -- Preserve as many trailing directories as fit, plus the filename.
+        for index = #parts - 1, 2, -1 do
+          local candidate = parts[index] .. separator .. suffix
+          if vim.fn.strdisplaywidth(prefix .. candidate) > available_width then
+            break
+          end
+          suffix = candidate
+        end
+
+        return prefix .. suffix
+      end
+
       -- Default mappings
       require('telescope').setup({
         defaults = {
-          path_display = { "smart_truncate" },
+          -- Keep normal path order and collapse only the middle when space is limited.
+          path_display = middle_truncate_path,
           layout_strategy = 'horizontal', -- or 'vertical'
           layout_config = {
             horizontal = {
@@ -22,6 +61,17 @@ return {
               preview_height = 0.5, -- 50% of height for preview panel
             },
           },
+          mappings = {
+            i = {
+              ["<leader><Left>"] = actions.results_scrolling_left,
+              ["<leader><Right>"] = actions.results_scrolling_right,
+            },
+            n = {
+              ["<leader><Left>"] = actions.results_scrolling_left,
+              ["<leader><Right>"] = actions.results_scrolling_right,
+            },
+
+          }
         }
       })
 
